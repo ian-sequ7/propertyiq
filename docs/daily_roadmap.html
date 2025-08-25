@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertyIQ - 30-Day Daily Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .document {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.3);
+            height: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: #27ae60;
+            height: 100%;
+            width: 0%;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .week-section {
+            margin-bottom: 50px;
+            border: 2px solid #ecf0f1;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .week-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .week-title {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .week-goal {
+            font-size: 1em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .week-content {
+            padding: 0;
+        }
+
+        .day-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .day-item:last-child {
+            border-bottom: none;
+        }
+
+        .day-item:hover {
+            background: #f8f9fa;
+        }
+
+        .day-number {
+            background: #34495e;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .day-content {
+            padding: 25px 30px;
+        }
+
+        .day-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .day-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .tasks {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tasks li {
+            background: #ecf0f1;
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            font-size: 0.95em;
+        }
+
+        .tasks li:before {
+            content: "◦";
+            color: #3498db;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .milestone {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .code-snippet {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .tips-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .tips-box h4 {
+            margin-bottom: 8px;
+            color: #856404;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .warning-box {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .time-estimate {
+            background: #17a2b8;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .difficulty {
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .difficulty-easy { background: #28a745; }
+        .difficulty-medium { background: #ffc107; color: #212529; }
+        .difficulty-hard { background: #dc3545; }
+
+        .difficulty {
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .day-item {
+                grid-template-columns: 70px 1fr;
+            }
+            
+            .day-content {
+                padding: 20px 15px;
+            }
+            
+            .week-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .week-goal {
+                margin-top: 10px;
+            }
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="document">
+            <div class="header">
+                <h1>PropertyIQ: 30-Day Launch Roadmap</h1>
+                <p>Your day-by-day guide to building and launching a real estate analytics startup</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="summary-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">30</div>
+                        <div class="stat-label">Total Days</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Major Phases</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$100</div>
+                        <div class="stat-label">Total Budget</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$500</div>
+                        <div class="stat-label">Revenue Goal</div>
+                    </div>
+                </div>
+
+                <!-- WEEK 1: FOUNDATION -->
+                <div class="week-section">
+                    <div class="week-header">
+                        <div>
+                            <div class="week-title">Week 1: Data Foundation</div>
+                            <div class="week-goal">Set up data collection and basic infrastructure</div>
+                        </div>
+                    </div>
+                    <div class="week-content">
+                        <div class="day-item">
+                            <div class="day-number">1</div>
+                            <div class="day-content">
+                                <div class="day-title">Project Setup & Domain</div>
+                                <div class="time-estimate">2-3 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Get your digital foundation ready and claim your online presence.</div>
+                                <ul class="tasks">
+                                    <li>Buy domain: propertyiq.com or similar ($12 on Namecheap)</li>
+                                    <li>Set up GitHub repository for version control</li>
+                                    <li>Create project folder structure locally</li>
+                                    <li>Set up basic Python environment (Python 3.9+)</li>
+                                    <li>Install initial packages: requests, pandas, python-dotenv</li>
+                                </ul>
+                                <div class="code-snippet">
+# Project structure
+propertyiq/
+├── api/
+├── frontend/
+├── data/
+├── scripts/
+└── requirements.txt
+                                </div>
+                                <div class="tips-box">
+                                    <h4>💡 Pro Tips:</h4>
+                                    <p>Choose a domain that's brandable but also descriptive. Avoid hyphens or numbers. Consider .io or .co if .com isn't available.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">2</div>
+                            <div class="day-content">
+                                <div class="day-title">API Research & Registration</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Register for all necessary APIs and understand their data structures.</div>
+                                <ul class="tasks">
+                                    <li>Register for FRED API key (free, immediate approval)</li>
+                                    <li>Test SF DataSF APIs (no registration needed)</li>
+                                    <li>Document rate limits and data formats for each API</li>
+                                    <li>Create .env file for storing API keys securely</li>
+                                    <li>Write simple test script to call each API</li>
+                                </ul>
+                                <div class="code-snippet">
+# Test API connectivity
+import requests
+import os
+from dotenv import load_dotenv
+
+# Test SF Building Permits API
+response = requests.get("https://data.sfgov.org/resource/i98e-djp9.json?$limit=5")
+print(f"SF Permits API: {response.status_code}")
+
+# Test FRED API  
+fred_key = os.getenv('FRED_API_KEY')
+response = requests.get(f"https://api.stlouisfed.org/fred/series?series_id=GDP&api_key={fred_key}")
+print(f"FRED API: {response.status_code}")
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">3</div>
+                            <div class="day-content">
+                                <div class="day-title">SF Address Normalization</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Build address standardization to match data across different SF APIs.</div>
+                                <ul class="tasks">
+                                    <li>Study SF address formats across different datasets</li>
+                                    <li>Create address cleaning/normalization function</li>
+                                    <li>Test with 20 known SF addresses</li>
+                                    <li>Handle edge cases (apartment numbers, street abbreviations)</li>
+                                    <li>Build geocoding fallback using free APIs</li>
+                                </ul>
+                                <div class="code-snippet">
+def normalize_sf_address(address):
+    """Clean and standardize SF address for API queries"""
+    # Remove apartment/unit numbers
+    # Standardize street names (St -> Street, Ave -> Avenue)
+    # Add "San Francisco, CA" suffix
+    # Return lat/lng if possible
+    pass
+                                </div>
+                                <div class="warning-box">
+                                    <h4>⚠️ Watch Out:</h4>
+                                    <p>SF has inconsistent address formats. "123 Main St" vs "123 MAIN STREET" vs "123 Main Street, San Francisco". Build flexible matching.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">4</div>
+                            <div class="day-content">
+                                <div class="day-title">Building Permits Data Pipeline</div>
+                                <div class="time-estimate">4-6 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Create system to analyze construction activity near properties.</div>
+                                <ul class="tasks">
+                                    <li>Build function to get permits within 0.5 miles of address</li>
+                                    <li>Categorize permit types by impact (new construction vs minor repair)</li>
+                                    <li>Calculate "construction momentum" score</li>
+                                    <li>Cache results in SQLite to avoid API rate limits</li>
+                                    <li>Test with Mission District and SOMA addresses</li>
+                                </ul>
+                                <div class="code-snippet">
+def get_nearby_permits(lat, lng, radius_miles=0.5):
+    """Get building permits within radius of coordinates"""
+    # Convert miles to meters for API
+    radius_meters = radius_miles * 1609.34
+    
+    # SF DataSF API call with geospatial query
+    url = f"https://data.sfgov.org/resource/i98e-djp9.json"
+    params = {
+        "$where": f"within_circle(location, {lat}, {lng}, {radius_meters})",
+        "$limit": 100
+    }
+    
+    response = requests.get(url, params=params)
+    return response.json()
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">5</div>
+                            <div class="day-content">
+                                <div class="day-title">Crime Data Analysis</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Build safety scoring based on local crime trends.</div>
+                                <ul class="tasks">
+                                    <li>Pull crime data within 0.25 miles of addresses</li>
+                                    <li>Weight crime types by severity (violent vs property vs quality of life)</li>
+                                    <li>Calculate 6-month crime trends (improving vs declining)</li>
+                                    <li>Create safety score algorithm</li>
+                                    <li>Validate against known safe/unsafe SF neighborhoods</li>
+                                </ul>
+                                <div class="success-box">
+                                    <h4>✅ Success Metric:</h4>
+                                    <p>Your crime scoring should correctly identify that Pacific Heights is safer than Tenderloin, and show recent trends.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">6</div>
+                            <div class="day-content">
+                                <div class="day-title">Economic & Demographic Data</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Integrate Census and business data for economic health indicators.</div>
+                                <ul class="tasks">
+                                    <li>Pull Census block group data for income levels</li>
+                                    <li>Get new business registrations in area</li>
+                                    <li>Calculate "economic vitality" score</li>
+                                    <li>Combine FRED metro data with hyperlocal data</li>
+                                    <li>Test correlation with known gentrifying areas</li>
+                                </ul>
+                                <div class="milestone">
+                                    🎯 Week 1 Milestone: All data pipelines working for any SF address
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">7</div>
+                            <div class="day-content">
+                                <div class="day-title">Weekend: Testing & Validation</div>
+                                <div class="time-estimate">2-3 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Test your data pipeline on diverse SF properties and fix issues.</div>
+                                <ul class="tasks">
+                                    <li>Test 20 different SF addresses across all neighborhoods</li>
+                                    <li>Document any data quality issues or API failures</li>
+                                    <li>Fix bugs and improve error handling</li>
+                                    <li>Create simple visualization of data for each test address</li>
+                                    <li>Prepare for Week 2: scoring algorithm development</li>
+                                </ul>
+                                <div class="tips-box">
+                                    <h4>🎯 Testing Addresses:</h4>
+                                    <p>Use a mix: luxury (Pacific Heights), gentrifying (Mission), established (Sunset), new development (SOMA), declining areas (parts of Tenderloin).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WEEK 2: ALGORITHM -->
+                <div class="week-section">
+                    <div class="week-header">
+                        <div>
+                            <div class="week-title">Week 2: Scoring Algorithm</div>
+                            <div class="week-goal">Build and calibrate property investment scoring system</div>
+                        </div>
+                    </div>
+                    <div class="week-content">
+                        <div class="day-item">
+                            <div class="day-number">8</div>
+                            <div class="day-content">
+                                <div class="day-title">Design Scoring Framework</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Create the mathematical foundation for PropertyIQ scoring.</div>
+                                <ul class="tasks">
+                                    <li>Define scoring weights: Infrastructure (40%), Safety (35%), Economic (25%)</li>
+                                    <li>Create 0-100 point scale with clear ranges</li>
+                                    <li>Design sub-component scoring for each category</li>
+                                    <li>Build scoring functions with proper normalization</li>
+                                    <li>Add confidence intervals based on data freshness</li>
+                                </ul>
+                                <div class="code-snippet">
+class PropertyScorer:
+    def __init__(self):
+        self.weights = {
+            'infrastructure': 0.40,
+            'safety': 0.35, 
+            'economic': 0.25
+        }
+    
+    def calculate_score(self, data):
+        infrastructure_score = self.score_infrastructure(data)
+        safety_score = self.score_safety(data)
+        economic_score = self.score_economic(data)
+        
+        total = (infrastructure_score * self.weights['infrastructure'] +
+                safety_score * self.weights['safety'] +
+                economic_score * self.weights['economic'])
+        
+        return min(100, max(0, total))
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">9</div>
+                            <div class="day-content">
+                                <div class="day-title">Infrastructure Scoring</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Build sophisticated scoring for construction and development activity.</div>
+                                <ul class="tasks">
+                                    <li>Weight permits by value and type (new construction = high impact)</li>
+                                    <li>Account for proximity (closer permits matter more)</li>
+                                    <li>Factor in permit timeline (recent permits weighted higher)</li>
+                                    <li>Add transit proximity scoring using OSM data</li>
+                                    <li>Include amenity density (restaurants, schools, parks)</li>
+                                </ul>
+                                <div class="tips-box">
+                                    <h4>💡 Scoring Logic:</h4>
+                                    <p>A $2M new construction permit 0.1 miles away should score much higher than a $5K bathroom renovation 0.4 miles away.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">10</div>
+                            <div class="day-content">
+                                <div class="day-title">Safety Scoring Algorithm</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-hard">HARD</div>
+                                <div class="day-description">Create nuanced safety assessment beyond simple crime counts.</div>
+                                <ul class="tasks">
+                                    <li>Weight crime types: violent (high impact), property (medium), other (low)</li>
+                                    <li>Calculate 6-month trend (improving vs deteriorating)</li>
+                                    <li>Account for time-of-day patterns in crime data</li>
+                                    <li>Factor in police response/resolution rates</li>
+                                    <li>Normalize for neighborhood population density</li>
+                                </ul>
+                                <div class="code-snippet">
+def score_safety(crime_data):
+    # Weight different crime types
+    crime_weights = {
+        'ASSAULT': 10,
+        'ROBBERY': 8, 
+        'BURGLARY': 6,
+        'VANDALISM': 2,
+        'NOISE': 1
+    }
+    
+    # Calculate weighted crime score
+    # Factor in trends and time patterns
+    # Return 0-100 safety score
+    pass
+                                </div>
+                                <div class="warning-box">
+                                    <h4>⚠️ Sensitivity Alert:</h4>
+                                    <p>Be careful with crime scoring to avoid perpetuating biases. Focus on trends and data quality, add appropriate disclaimers.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">11</div>
+                            <div class="day-content">
+                                <div class="day-title">Economic Vitality Scoring</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Measure economic momentum and growth potential.</div>
+                                <ul class="tasks">
+                                    <li>Score new business openings vs closures</li>
+                                    <li>Weight business types (restaurants/retail = high visibility impact)</li>
+                                    <li>Include income level trends from Census data</li>
+                                    <li>Factor in employment data from FRED</li>
+                                    <li>Add "gentrification indicators" scoring</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">12</div>
+                            <div class="day-content">
+                                <div class="day-title">Algorithm Calibration</div>
+                                <div class="time-estimate">4-6 hours</div>
+                                <div class="difficulty difficulty-hard">HARD</div>
+                                <div class="day-description">Test and tune your scoring against known property performance.</div>
+                                <ul class="tasks">
+                                    <li>Test against 30 diverse SF properties</li>
+                                    <li>Compare scores to recent sales price changes</li>
+                                    <li>Adjust weights based on correlation analysis</li>
+                                    <li>Identify and fix scoring edge cases</li>
+                                    <li>Document scoring methodology for transparency</li>
+                                </ul>
+                                <div class="success-box">
+                                    <h4>✅ Calibration Target:</h4>
+                                    <p>High-scoring properties should correlate with known good investment areas. Pacific Heights > Mission > Tenderloin for stability.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">13</div>
+                            <div class="day-content">
+                                <div class="day-title">Reporting & Insights Generation</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Create clear, actionable property insights for customers.</div>
+                                <ul class="tasks">
+                                    <li>Build "top 3 factors" identification algorithm</li>
+                                    <li>Create plain-English explanations for scores</li>
+                                    <li>Add risk warnings for low-scoring properties</li>
+                                    <li>Generate investment recommendations (buy/hold/avoid)</li>
+                                    <li>Include data freshness and confidence indicators</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">14</div>
+                            <div class="day-content">
+                                <div class="day-title">Weekend: Algorithm Testing</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Comprehensive testing and refinement of your scoring system.</div>
+                                <ul class="tasks">
+                                    <li>Test scoring on 50 different SF addresses</li>
+                                    <li>Validate results against your intuition about SF neighborhoods</li>
+                                    <li>Fix any bugs or unexpected scoring results</li>
+                                    <li>Create sample reports for different property types</li>
+                                    <li>Prepare for Week 3: frontend development</li>
+                                </ul>
+                                <div class="milestone">
+                                    🎯 Week 2 Milestone: Working scoring algorithm that produces reasonable property ratings
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WEEK 3: FRONTEND -->
+                <div class="week-section">
+                    <div class="week-header">
+                        <div>
+                            <div class="week-title">Week 3: Frontend & Payment</div>
+                            <div class="week-goal">Build user interface and payment processing</div>
+                        </div>
+                    </div>
+                    <div class="week-content">
+                        <div class="day-item">
+                            <div class="day-number">15</div>
+                            <div class="day-content">
+                                <div class="day-title">UI Design & Planning</div>
+                                <div class="time-estimate">2-3 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Design the user experience flow and visual layout.</div>
+                                <ul class="tasks">
+                                    <li>Sketch user flow: Address input → Preview → Payment → Full report</li>
+                                    <li>Design simple, clean interface mockups</li>
+                                    <li>Plan mobile-responsive layout</li>
+                                    <li>Choose color scheme and branding elements</li>
+                                    <li>Create content for landing page copy</li>
+                                </ul>
+                                <div class="tips-box">
+                                    <h4>🎨 Design Principles:</h4>
+                                    <p>Keep it simple! One clear call-to-action: "Get Property Analysis". Focus on trust and credibility over flashy design.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">16</div>
+                            <div class="day-content">
+                                <div class="day-title">Frontend Framework Setup</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Set up your web development environment and basic structure.</div>
+                                <ul class="tasks">
+                                    <li>Create HTML/CSS/JS structure (no complex frameworks needed)</li>
+                                    <li>Add Bootstrap for responsive design</li>
+                                    <li>Set up address autocomplete with Google Places API (free tier)</li>
+                                    <li>Create basic form validation</li>
+                                    <li>Test on mobile and desktop browsers</li>
+                                </ul>
+                                <div class="code-snippet">
+<!-- Basic HTML structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PropertyIQ - SF Real Estate Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>PropertyIQ</h1>
+        <p>Get AI-powered investment insights for any SF property</p>
+        <form id="addressForm">
+            <input type="text" id="address" placeholder="Enter SF address...">
+            <button type="submit">Analyze Property - $15</button>
+        </form>
+    </div>
+</body>
+</html>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">17</div>
+                            <div class="day-content">
+                                <div class="day-title">Backend API Development</div>
+                                <div class="time-estimate">5-6 hours</div>
+                                <div class="difficulty difficulty-hard">HARD</div>
+                                <div class="day-description">Create REST API to connect frontend with your scoring algorithm.</div>
+                                <ul class="tasks">
+                                    <li>Set up FastAPI backend server</li>
+                                    <li>Create /analyze endpoint that takes address input</li>
+                                    <li>Integrate your scoring algorithm with API</li>
+                                    <li>Add proper error handling and validation</li>
+                                    <li>Test API endpoints with Postman or curl</li>
+                                </ul>
+                                <div class="code-snippet">
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class PropertyRequest(BaseModel):
+    address: str
+
+@app.post("/analyze")
+async def analyze_property(request: PropertyRequest):
+    try:
+        # Clean and validate address
+        # Run scoring algorithm  
+        # Return formatted results
+        return {
+            "score": 75,
+            "factors": ["New construction nearby", "Low crime trend", "Growing business activity"],
+            "recommendation": "Good investment opportunity"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">18</div>
+                            <div class="day-content">
+                                <div class="day-title">Payment Integration</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Add PayPal payment processing for property reports.</div>
+                                <ul class="tasks">
+                                    <li>Set up PayPal Developer account</li>
+                                    <li>Integrate PayPal Checkout buttons</li>
+                                    <li>Handle payment success/failure flows</li>
+                                    <li>Create payment verification system</li>
+                                    <li>Test with PayPal sandbox (fake payments)</li>
+                                </ul>
+                                <div class="warning-box">
+                                    <h4>⚠️ Payment Security:</h4>
+                                    <p>Never store payment info. Let PayPal handle all sensitive data. Only store payment confirmation IDs for your records.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">19</div>
+                            <div class="day-content">
+                                <div class="day-title">Results Page & Visualization</div>
+                                <div class="time-estimate">4-6 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Create compelling visualization of property analysis results.</div>
+                                <ul class="tasks">
+                                    <li>Design results page layout with score visualization</li>
+                                    <li>Add progress bars for different score components</li>
+                                    <li>Create "Top 3 Factors" section with explanations</li>
+                                    <li>Add neighborhood context and comparisons</li>
+                                    <li>Include disclaimers and data source information</li>
+                                </ul>
+                                <div class="success-box">
+                                    <h4>✅ Results Page Goals:</h4>
+                                    <p>Customer should immediately understand: 1) Overall investment attractiveness, 2) Key reasons why, 3) What data supports this conclusion.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">20</div>
+                            <div class="day-content">
+                                <div class="day-title">Hosting & Deployment</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Deploy your application to production hosting.</div>
+                                <ul class="tasks">
+                                    <li>Set up Netlify for frontend hosting</li>
+                                    <li>Deploy backend to Railway or PythonAnywhere</li>
+                                    <li>Configure custom domain and SSL</li>
+                                    <li>Set up environment variables for production</li>
+                                    <li>Test full user flow on live site</li>
+                                </ul>
+                                <div class="code-snippet">
+# Deployment checklist
+□ Frontend deployed to Netlify
+□ Backend deployed to Railway  
+□ Domain pointing to correct servers
+□ SSL certificate active
+□ Environment variables configured
+□ Database connections working
+□ Payment processing functional
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">21</div>
+                            <div class="day-content">
+                                <div class="day-title">Weekend: Testing & Bug Fixes</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Comprehensive testing and polishing of your live application.</div>
+                                <ul class="tasks">
+                                    <li>Test complete user journey from multiple devices</li>
+                                    <li>Fix any bugs or usability issues discovered</li>
+                                    <li>Optimize page loading speed</li>
+                                    <li>Add Google Analytics tracking</li>
+                                    <li>Create simple admin panel to track orders</li>
+                                </ul>
+                                <div class="milestone">
+                                    🎯 Week 3 Milestone: Live website where users can pay $15 and get property reports
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WEEK 4: LAUNCH -->
+                <div class="week-section">
+                    <div class="week-header">
+                        <div>
+                            <div class="week-title">Week 4: Marketing & Launch</div>
+                            <div class="week-goal">Go to market and validate customer demand</div>
+                        </div>
+                    </div>
+                    <div class="week-content">
+                        <div class="day-item">
+                            <div class="day-number">22</div>
+                            <div class="day-content">
+                                <div class="day-title">Content Creation & Positioning</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Create marketing materials and value proposition messaging.</div>
+                                <ul class="tasks">
+                                    <li>Write compelling website copy focused on investor pain points</li>
+                                    <li>Create sample property reports to showcase value</li>
+                                    <li>Develop elevator pitch for PropertyIQ</li>
+                                    <li>Design simple graphics/screenshots for social media</li>
+                                    <li>Write FAQ addressing common investor questions</li>
+                                </ul>
+                                <div class="tips-box">
+                                    <h4>📝 Messaging Tips:</h4>
+                                    <p>Focus on the problem: "Stop guessing about property investments. Get data-driven insights for $15 instead of driving around neighborhoods hoping for the best."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">23</div>
+                            <div class="day-content">
+                                <div class="day-title">Beta Testing with Real Users</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Get initial feedback from target customers before full launch.</div>
+                                <ul class="tasks">
+                                    <li>Recruit 5-10 SF real estate investors for beta testing</li>
+                                    <li>Offer free reports in exchange for detailed feedback</li>
+                                    <li>Watch users navigate your site (screen sharing)</li>
+                                    <li>Document all feedback and suggested improvements</li>
+                                    <li>Make critical fixes based on user testing</li>
+                                </ul>
+                                <div class="success-box">
+                                    <h4>✅ Beta Testing Success:</h4>
+                                    <p>At least 7/10 users should say they'd pay $15 for this analysis and recommend it to other investors.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">24</div>
+                            <div class="day-content">
+                                <div class="day-title">Social Media & Community Outreach</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Begin building awareness in real estate investor communities.</div>
+                                <ul class="tasks">
+                                    <li>Join SF real estate Facebook groups and introduce PropertyIQ</li>
+                                    <li>Post on r/realestateinvesting subreddit with sample analysis</li>
+                                    <li>Share on BiggerPockets forum with helpful market insights</li>
+                                    <li>Reach out to SF real estate agents on LinkedIn</li>
+                                    <li>Create Twitter account and share neighborhood analyses</li>
+                                </ul>
+                                <div class="warning-box">
+                                    <h4>⚠️ Community Guidelines:</h4>
+                                    <p>Don't spam! Lead with value - share interesting SF market insights, then mention PropertyIQ as the tool that generated them.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">25</div>
+                            <div class="day-content">
+                                <div class="day-title">Launch Day Campaign</div>
+                                <div class="time-estimate">5-6 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Execute coordinated launch across multiple channels.</div>
+                                <ul class="tasks">
+                                    <li>Launch social media campaign with launch day pricing</li>
+                                    <li>Email beta testers asking for reviews/referrals</li>
+                                    <li>Post launch announcement on all relevant forums</li>
+                                    <li>Run small Facebook/Google ads ($20 budget)</li>
+                                    <li>Track website traffic and conversion rates closely</li>
+                                </ul>
+                                <div class="milestone">
+                                    🚀 LAUNCH DAY: PropertyIQ is live and taking real customer orders!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">26</div>
+                            <div class="day-content">
+                                <div class="day-title">Customer Support & Optimization</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Handle initial customer inquiries and optimize based on feedback.</div>
+                                <ul class="tasks">
+                                    <li>Respond to customer questions and support requests</li>
+                                    <li>Monitor site performance and fix any issues</li>
+                                    <li>Analyze user behavior with Google Analytics</li>
+                                    <li>Make quick improvements to conversion funnel</li>
+                                    <li>Follow up with customers for testimonials</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">27</div>
+                            <div class="day-content">
+                                <div class="day-title">Direct Outreach & Sales</div>
+                                <div class="time-estimate">4-5 hours</div>
+                                <div class="difficulty difficulty-medium">MEDIUM</div>
+                                <div class="day-description">Proactive outreach to potential high-value customers.</div>
+                                <ul class="tasks">
+                                    <li>Identify active SF house flippers on Instagram/social media</li>
+                                    <li>Send personalized messages with free sample analyses</li>
+                                    <li>Reach out to SF real estate investment meetup organizers</li>
+                                    <li>Contact real estate podcasters for potential interviews</li>
+                                    <li>Offer bulk discounts to real estate agents</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">28</div>
+                            <div class="day-content">
+                                <div class="day-title">Weekend: Growth Tactics</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Implement growth tactics and referral strategies.</div>
+                                <ul class="tasks">
+                                    <li>Add referral system (refer a customer, get $5 credit)</li>
+                                    <li>Create "SF Investment Hotspots" blog post for SEO</li>
+                                    <li>Set up email collection for future marketing</li>
+                                    <li>Analyze which marketing channels are working best</li>
+                                    <li>Plan Week 5+ expansion strategy</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAYS 29-30: ANALYSIS -->
+                <div class="week-section">
+                    <div class="week-header">
+                        <div>
+                            <div class="week-title">Days 29-30: Analysis & Next Steps</div>
+                            <div class="week-goal">Evaluate results and plan future growth</div>
+                        </div>
+                    </div>
+                    <div class="week-content">
+                        <div class="day-item">
+                            <div class="day-number">29</div>
+                            <div class="day-content">
+                                <div class="day-title">Results Analysis & Metrics Review</div>
+                                <div class="time-estimate">3-4 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Analyze your 30-day performance and customer feedback.</div>
+                                <ul class="tasks">
+                                    <li>Calculate total revenue and conversion rates</li>
+                                    <li>Analyze customer feedback and satisfaction scores</li>
+                                    <li>Identify most successful marketing channels</li>
+                                    <li>Review technical performance and uptime</li>
+                                    <li>Document lessons learned and what worked/didn't work</li>
+                                </ul>
+                                <div class="success-box">
+                                    <h4>✅ Success Metrics to Track:</h4>
+                                    <ul>
+                                        <li>Total revenue (target: $300+)</li>
+                                        <li>Reports sold (target: 20+)</li>
+                                        <li>Conversion rate (target: 5%+)</li>
+                                        <li>Customer satisfaction (target: 4/5 stars)</li>
+                                        <li>Repeat customers (target: 3+)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="day-item">
+                            <div class="day-number">30</div>
+                            <div class="day-content">
+                                <div class="day-title">Future Planning & Strategy</div>
+                                <div class="time-estimate">2-3 hours</div>
+                                <div class="difficulty difficulty-easy">EASY</div>
+                                <div class="day-description">Plan your next 30 days based on what you learned.</div>
+                                <ul class="tasks">
+                                    <li>Decide: Continue/pivot/shut down based on results</li>
+                                    <li>If continuing: Plan expansion to Oakland/San Jose</li>
+                                    <li>Identify top 3 product improvements needed</li>
+                                    <li>Set revenue goals for Month 2</li>
+                                    <li>Consider raising small amount of capital if successful</li>
+                                </ul>
+                                <div class="milestone">
+                                    🏁 30-DAY MILESTONE: You've built and launched a real business that generates actual revenue!
+                                </div>
+                                <div class="tips-box">
+                                    <h4>🎯 Decision Framework:</h4>
+                                    <p><strong>If Revenue > $300:</strong> Expand to more cities<br>
+                                    <strong>If Revenue $100-300:</strong> Optimize conversion, try new marketing<br>
+                                    <strong>If Revenue < $100:</strong> Consider pivot or shutdown</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); border-radius: 15px; color: white;">
+                    <h2>🎉 Congratulations!</h2>
+                    <p style="font-size: 1.2em; margin: 15px 0;">You've completed the 30-day PropertyIQ challenge!</p>
+                    <p>Whether you succeeded, failed, or landed somewhere in between, you've gained invaluable experience building a real business from scratch.</p>
+                    <div style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+                        <p><strong>Total Investment:</strong> $100 | <strong>Total Time:</strong> 30 days | <strong>Experience Gained:</strong> Priceless</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple progress tracking
+        let completedDays = 0;
+        
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const percentage = (completedDays / 30) * 100;
+            progressBar.style.width = percentage + '%';
+        }
+        
+        // Add click handlers for day completion tracking
+        document.querySelectorAll('.day-item').forEach((day, index) => {
+            day.addEventListener('click', function() {
+                this.style.opacity = this.style.opacity === '0.6' ? '1' : '0.6';
+                // Update progress tracking logic here
+            });
+        });
+        
+        console.log("PropertyIQ 30-Day Roadmap Loaded - Ready to build your startup!");
+    </script>
+</body>
+</html>
