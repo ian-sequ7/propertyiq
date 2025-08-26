@@ -18,3 +18,4 @@ Ultra-lean real estate analytics tool for San Francisco property investors.
 - **Data**: SF DataSF APIs + Census + FRED
 - **Payment**: PayPal
 - **Hosting**: Netlify + Railway
+-**This is how we are going to do it moving forwards**
